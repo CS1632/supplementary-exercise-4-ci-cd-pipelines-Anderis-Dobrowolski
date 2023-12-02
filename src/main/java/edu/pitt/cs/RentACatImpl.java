@@ -18,7 +18,13 @@ public class RentACatImpl implements RentACat {
 	 */
 
 	public boolean returnCat(int id) {
-		// TODO
+        // TODO
+		if (getCat(id) != null) {
+            if (getCat(id).getRented() == true) {
+                getCat(id).returnCat();
+                return true;
+            }
+        }
 		return false;
 	}
 
@@ -34,6 +40,13 @@ public class RentACatImpl implements RentACat {
 
 	public boolean rentCat(int id) {
 		// TODO
+
+        if (getCat(id) != null) {
+            if (getCat(id).getRented() == false) {
+                getCat(id).rentCat();
+                return true;
+            }
+        }
 		return false;
 	}
 
@@ -49,7 +62,11 @@ public class RentACatImpl implements RentACat {
 
 	public String listCats() {
 		// TODO
-		return "WRITE CODE FOR THIS";
+        String output = "";
+        for (Cat cat: cats) {
+            output = output + cat.toString() + "\n";
+        }
+		return output;
 	}
 
 	/**
@@ -63,6 +80,13 @@ public class RentACatImpl implements RentACat {
 
 	public boolean catExists(int id) {
 		// TODO
+        if (cats != null) {
+            if (!cats.isEmpty()) {
+                if (getCat(id) != null) {
+                    return true;
+                }
+            }
+        }
 		return false;
 	}
 
